@@ -2,6 +2,8 @@
 
 To start your Phoenix app:
 
+  * [How to install elixir v1.3](https://github.com/taylor/kiex)
+  * [How to install phoenix](http://www.phoenixframework.org/docs/installation)
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
   * Start Phoenix endpoint with `mix phoenix.server`
