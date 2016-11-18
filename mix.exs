@@ -18,7 +18,7 @@ defmodule ClinicApp.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {ClinicApp, []},
-     applications: [:ex_machina, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
+     applications: [:faker, :ex_machina, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex]]
   end
 
@@ -30,7 +30,8 @@ defmodule ClinicApp.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:ex_machina, "~> 1.0", only: :test},
+    [{:faker, "~> 0.7", only: :test},
+     {:ex_machina, "~> 1.0", only: :test},
      {:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.0"},
