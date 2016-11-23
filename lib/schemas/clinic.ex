@@ -8,7 +8,7 @@ defmodule ClinicApp.Clinic do
     field :manager
     field :email
     field :open_time, :time
-    field :closing_time, :time
+    field :close_time, :time
     field :open_days
   end
 end

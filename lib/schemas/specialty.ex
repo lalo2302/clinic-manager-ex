@@ -7,6 +7,6 @@ defmodule ClinicApp.Specialty do
     field :opening_time, :time
     field :closing_time, :time
     field :extension
-    field :price, :float
+    field :cost, :float
   end
 end

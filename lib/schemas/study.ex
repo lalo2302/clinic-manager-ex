@@ -3,7 +3,6 @@ defmodule ClinicApp.Study do
 
   schema "study" do
     field :date, :date
-    field :type
     field :diagnosis
     field :result
     field :indications

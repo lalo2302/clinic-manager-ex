@@ -4,6 +4,6 @@ defmodule ClinicApp.User do
   schema "user" do
     field :username
     field :password
-    field :access_level
+    field :level
   end
 end

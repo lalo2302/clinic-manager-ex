@@ -2,7 +2,7 @@ defmodule ClinicApp.Drug do
   use Ecto.Schema
 
   schema "drug" do
-    field :sku, :integer
+    field :sku
     field :name
     field :description
     field :purchase_price, :float

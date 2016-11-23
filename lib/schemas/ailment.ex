@@ -4,7 +4,7 @@ defmodule ClinicApp.Ailment do
   schema "ailment" do
     field :main_symptom
     field :date_of_detection, :date
-    field :symptom_localization
+    field :symptom_location
     field :colateral_symptom
     field :end_date, :date
   end

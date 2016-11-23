@@ -4,14 +4,14 @@ defmodule ClinicApp.Employee do
   schema "employee" do
     field :name
     field :last_name
-    field :date_of_birth, :date
+    field :date_birth, :date
+    field :address
+    field :phone
+    field :profession
     field :gender
     field :curp
     field :rfc
-    field :address
     field :email
-    field :phone
-    field :profession
     field :job
   end
 end
