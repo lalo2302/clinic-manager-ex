@@ -77,7 +77,7 @@ defmodule ClinicApp.Factory do
   end
 
   def physical_exploration_factory do
-    %ClinicApp.Physical{
+    %ClinicApp.PhysicalExploration{
        temperature: 37.5,
        blood_pressure: 60,
        heart_rate: 60,
@@ -101,7 +101,7 @@ defmodule ClinicApp.Factory do
   end
 
   def specialty_factory do
-    %CLinicApp.Specialty{
+    %ClinicApp.Specialty{
       name: Faker.Name.name,
       description: Faker.Company.catch_phrase,
       opening_time: Time.new(8,0,0),
@@ -142,25 +142,4 @@ defmodule ClinicApp.Factory do
       quantity: 5
     }
   end
-
-  def state_factory do
-    %ClinicApp.State{
-      name: "Guanajuato"
-    }
-  end
-
-  def city_factory do
-    %ClinicApp.City{
-      name: "León"
-    }
-  end
 end
-
-
-
-
-
-
-
-
-
