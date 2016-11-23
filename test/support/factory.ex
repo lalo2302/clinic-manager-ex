@@ -1,5 +1,6 @@
 defmodule ClinicApp.Factory do
-  use ExMachina.Ecto #, repo: ClinicApp.Repo
+  use ExMachina
+  use ClinicApp.JsonEncodeStrategy
 
   def patient_factory do
     %ClinicApp.Patient{
@@ -59,77 +60,99 @@ defmodule ClinicApp.Factory do
   # TODO: ClinicalHistory
   
   def antecedent_factory do
-    type: "" #TODO: Make a enum type,
-    name: Faker.Name.name,
-    description: Faker.Company.catch_phrase,
+    %ClinicApp.Antecedent{
+      type: "", #TODO: Make a enum type
+      name: Faker.Name.name,
+      description: Faker.Company.catch_phrase
+    }
   end
 
   def ailment_factory do
-    main_symptom: "Tuberculosis",
-    date_of_detection: DateTime.utc_now |> DateTime.to_date,
-    symptom_localization: "Rigth Arm",
-    colateral_symptom: "a colateral symptom"
+    %ClinicApp.Ailment{
+      main_symptom: "Tuberculosis",
+      date_of_detection: DateTime.utc_now |> DateTime.to_date,
+      symptom_localization: "Rigth Arm",
+      colateral_symptom: "a colateral symptom"
+    }
   end
 
   def physical_exploration_factory do
-   temperature: 37.5,
-   blood_pressure: 60,
-   heart_rate: 60,
-   breathing_frec: 30,
-   observations: Faker.Company.catch_phrase
+    %ClinicApp.Physical{
+       temperature: 37.5,
+       blood_pressure: 60,
+       heart_rate: 60,
+       breathing_frec: 30,
+       observations: Faker.Company.catch_phrase
+     }
   end
 
   def prescription_factory do
-    date: DateTime.utc_now |> DateTime.to_date 
+    %ClinicApp.Prescription{
+      date: DateTime.utc_now |> DateTime.to_date 
+    }
   end
 
   def prescription_detail_factory do
-    quantity: 2,
-    price: 300,
-    description: Faker.Company.catch_phrase
+    %ClinicApp.PrescriptionDetail{
+      quantity: 2,
+      price: 300,
+      description: Faker.Company.catch_phrase
+    }
   end
 
   def specialty_factory do
-    name: Faker.Name.name,
-    description: Faker.Company.catch_phrase,
-    opening_time: Time.new(8,0,0),
-    closing_time: Time.new(19,0,0),
-    extension: Faker.Company.extension(3),
-    price: 200.00 #TODO: in db is money type
+    %CLinicApp.Specialty{
+      name: Faker.Name.name,
+      description: Faker.Company.catch_phrase,
+      opening_time: Time.new(8,0,0),
+      closing_time: Time.new(19,0,0),
+      extension: Faker.Company.extension(3),
+      price: 200.00 #TODO: in db is money type
+    }
   end
 
   def appointment_factory do
-    date: DateTime.utc_now |> DateTime.to_date,
-    type: 'C', #Get types of db
-    status: 1 #TODO: make enums for status
+    %ClinicApp.Appointment{
+      date: DateTime.utc_now |> DateTime.to_date,
+      type: 'C', #Get types of db
+      status: 1 #TODO: make enums for status
+    }
   end
 
   def study_factory do
-    date: DateTime.utc_now |> DateTime.to_date,
-    type: "ultrasonido",
-    diagnosis: Faker.Company.catch_phrase,
-    result: Faker.Company.catch_phrase,
-    indications: Faker.Company.catch_phrase,
-    treatment: Faker.Company.catch_phrase
+    %ClinicApp.Study{
+      date: DateTime.utc_now |> DateTime.to_date,
+      type: "ultrasonido",
+      diagnosis: Faker.Company.catch_phrase,
+      result: Faker.Company.catch_phrase,
+      indications: Faker.Company.catch_phrase,
+      treatment: Faker.Company.catch_phrase
+    }
   end
 
   # TODO: Image
   
   def drug_factory do
-    sku: "laolsjbyut6rr",
-    name: Faker.Commerce.En.product_name,
-    description: Faker.Company.catch_phrase,
-    purchase_price: 300.00, #TODO: money in db
-    sell_price: 400.00,
-    quantity: 5
+    %ClinicApp.Drug{
+      sku: "laolsjbyut6rr",
+      name: Faker.Commerce.En.product_name,
+      description: Faker.Company.catch_phrase,
+      purchase_price: 300.00, #TODO: money in db
+      sell_price: 400.00,
+      quantity: 5
+    }
   end
 
   def state_factory do
-    name: "Guanajuato"
+    %ClinicApp.State{
+      name: "Guanajuato"
+    }
   end
 
   def city_factory do
-    name: "León"
+    %ClinicApp.City{
+      name: "León"
+    }
   end
 end
 
