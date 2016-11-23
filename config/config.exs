@@ -5,10 +5,6 @@
 # is restricted to this project.
 use Mix.Config
 
-# General application configuration
-config :clinic_app,
-  ecto_repos: [ClinicApp.Repo]
-
 # Configures the endpoint
 config :clinic_app, ClinicApp.Endpoint,
   url: [host: "localhost"],

@@ -18,21 +18,12 @@ defmodule ClinicApp.Web do
 
   def model do
     quote do
-      use Ecto.Schema
-
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
     end
   end
 
   def controller do
     quote do
       use Phoenix.Controller
-
-      alias ClinicApp.Repo
-      import Ecto
-      import Ecto.Query
 
       import ClinicApp.Router.Helpers
       import ClinicApp.Gettext
@@ -64,10 +55,6 @@ defmodule ClinicApp.Web do
   def channel do
     quote do
       use Phoenix.Channel
-
-      alias ClinicApp.Repo
-      import Ecto
-      import Ecto.Query
       import ClinicApp.Gettext
     end
   end

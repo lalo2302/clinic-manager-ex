@@ -20,11 +20,6 @@ defmodule ClinicApp.ChannelCase do
       # Import conveniences for testing with channels
       use Phoenix.ChannelTest
 
-      alias ClinicApp.Repo
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-
 
       # The default endpoint for testing
       @endpoint ClinicApp.Endpoint
@@ -32,11 +27,6 @@ defmodule ClinicApp.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ClinicApp.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ClinicApp.Repo, {:shared, self()})
-    end
 
     :ok
   end

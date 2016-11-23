@@ -8,12 +8,3 @@ config :clinic_app, ClinicApp.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-
-# Configure your database
-config :clinic_app, ClinicApp.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "clinic_app_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
