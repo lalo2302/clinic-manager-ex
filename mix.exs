@@ -17,7 +17,7 @@ defmodule ClinicApp.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {ClinicApp, []},
-     applications: [:faker, :ex_machina, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :ecto]]
+     applications: [:faker, :ex_machina, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :tds_ecto, :ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -36,6 +36,7 @@ defmodule ClinicApp.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
+     {:tds_ecto, "~> 1.0.2"},
      {:ecto, git: "https://github.com/lalo2302/ecto.git", override: true} 
    ]
   end

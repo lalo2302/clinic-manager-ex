@@ -13,6 +13,16 @@ config :clinic_app, ClinicApp.Endpoint,
   pubsub: [name: ClinicApp.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+# Configures Ecto database
+
+ config :clinic_app, ClinicApp.Repo,
+  database: "Clinica666",
+  username: "sa",
+  password: "Password01",
+  hostname: "127.0.0.1",
+  adapter: Tds.Ecto
+
+config :clinic_app, ecto_repos: [ClinicApp.Repo]
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
