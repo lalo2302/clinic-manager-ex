@@ -17,7 +17,7 @@ defmodule ClinicApp.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {ClinicApp, []},
-     applications: [:faker, :ex_machina, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :tds_ecto, :ecto]]
+     applications: [:faker, :phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :tds_ecto, :ecto, :ex_machina]]
   end
 
   # Specifies which paths to compile per environment.
@@ -29,7 +29,6 @@ defmodule ClinicApp.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [{:faker, "~> 0.7"},
-     {:ex_machina, "~> 1.0"},
      {:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_html, "~> 2.6"},
@@ -37,7 +36,8 @@ defmodule ClinicApp.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:tds_ecto, "~> 1.0.2"},
-     {:ecto, git: "https://github.com/lalo2302/ecto.git", override: true} 
+     {:ecto, "~> 1.1.8"},
+     {:ex_machina, git: "https://github.com/lalo2302/ex_machina.git"}
    ]
   end
 end

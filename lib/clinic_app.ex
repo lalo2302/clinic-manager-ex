@@ -12,6 +12,7 @@ defmodule ClinicApp do
       supervisor(ClinicApp.Endpoint, []),
       # Start your own worker by calling: ClinicApp.Worker.start_link(arg1, arg2, arg3)
       # worker(ClinicApp.Worker, [arg1, arg2, arg3]),
+      worker(ClinicApp.Repo, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

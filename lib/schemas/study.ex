@@ -2,7 +2,7 @@ defmodule ClinicApp.Study do
   use Ecto.Schema
 
   schema "study" do
-    field :date, :date
+    field :date, Ecto.Date
     field :diagnosis
     field :result
     field :indications

@@ -33,7 +33,7 @@ defmodule ClinicApp.Factory do
       address: Faker.Address.street_address,
       phone: Faker.Phone.EnUs.phone,
       manager: Faker.Name.name,
-      email: Faker.Internet.free_email,
+      #email: Faker.Internet.free_email,
       open_time: Time.new(8,0,0),
       close_time: Time.new(17,0,0),
       open_days: "Lun-Vie"
@@ -76,15 +76,30 @@ defmodule ClinicApp.Factory do
       last_name: Faker.Name.last_name,
       date_of_birth: DateTime.utc_now,
       address: Faker.Address.street_address,
-      phone: Faker.Phone.EnUs.phone 
+      phone: Faker.Phone.EnUs.phone, 
       gender: "M",
       curp: "AUOE960223HDFGLD00",
       rfc: "QCS931209 G49",
       email: Faker.Internet.free_email,
-
       # Relation with ClinicalHistory
       # Relation with User
     }
+  end
+
+  def with_clinical_history(patient) do
+    attrs = %{clinical_history: build(:clinical_history)}
+    #   params_with_assocs(patient, attrs)
+  end
+
+  def with_user(resource) do
+    attrs = %{user: build(:user)}
+    
+    #params_with_assocs(resource, attrs)
+  end
+
+  def with_antecedents(patient) do
+    clinical_history = patient.clinical_history
+    #    antedecents = insert_list(2, :antecedent)
   end
 
   def physical_exploration_factory do
@@ -118,14 +133,13 @@ defmodule ClinicApp.Factory do
       opening_time: Time.new(8,0,0),
       closing_time: Time.new(19,0,0),
       extension: Faker.Company.extension(3),
-      price: 200.00 
+      cost: 200.00 
     }
   end
 
   def study_factory do
     %ClinicApp.Study{
       date: DateTime.utc_now |> DateTime.to_date,
-      type: "ultrasonido",
       diagnosis: Faker.Company.catch_phrase,
       result: Faker.Company.catch_phrase,
       indications: Faker.Company.catch_phrase,

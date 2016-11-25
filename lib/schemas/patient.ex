@@ -4,7 +4,7 @@ defmodule ClinicApp.Patient do
   schema "patient" do
     field :name
     field :last_name
-    field :date_of_birth, :date
+    field :date_of_birth, Ecto.Date
     field :address
     field :phone
     field :gender

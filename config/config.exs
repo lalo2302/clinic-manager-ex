@@ -19,10 +19,10 @@ config :clinic_app, ClinicApp.Endpoint,
   database: "Clinica666",
   username: "sa",
   password: "Password01",
-  hostname: "127.0.0.1",
-  adapter: Tds.Ecto
+  hostname: "10.188.224.146"
 
 config :clinic_app, ecto_repos: [ClinicApp.Repo]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

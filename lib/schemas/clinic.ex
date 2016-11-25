@@ -6,9 +6,9 @@ defmodule ClinicApp.Clinic do
     field :address
     field :phone
     field :manager
-    field :email
-    field :open_time, :time
-    field :close_time, :time
+    #    field :email
+    field :open_time, Ecto.Time
+    field :close_time, Ecto.Time
     field :open_days
   end
 end
