@@ -7,5 +7,7 @@ defmodule ClinicApp.PhysicalExploration do
     field :heart_rate, :integer
     field :breathing_frec, :integer
     field :observations
+
+    belongs_to :clinical_history, ClinicApp.ClinicalHistory
   end
 end

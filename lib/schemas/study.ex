@@ -7,5 +7,10 @@ defmodule ClinicApp.Study do
     field :result
     field :indications
     field :treatment
+
+    belongs_to :clinical_history, ClinicApp.ClinicalHistory
+    belongs_to :employee, ClinicApp.Employee
+
+    has_many :images, ClinicApp.Image
   end
 end

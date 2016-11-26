@@ -19,7 +19,7 @@ config :clinic_app, ClinicApp.Endpoint,
   database: "Clinica666",
   username: "sa",
   password: "Password01",
-  hostname: "10.188.224.146"
+  hostname: "192.168.0.23" 
 
 config :clinic_app, ecto_repos: [ClinicApp.Repo]
 

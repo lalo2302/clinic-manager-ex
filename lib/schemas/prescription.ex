@@ -3,5 +3,10 @@ defmodule ClinicApp.Prescription do
 
   schema "prescription" do
     field :date, Ecto.Date
+
+    belongs_to :patient, ClinicApp.Patient
+    belongs_to :employee, ClinicApp.Employee
+
+    has_many :prescription_details, ClinicApp.PrescriptionDetail
   end
 end

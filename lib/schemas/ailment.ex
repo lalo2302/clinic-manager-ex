@@ -7,5 +7,7 @@ defmodule ClinicApp.Ailment do
     field :symptom_location
     field :colateral_symptom
     field :end_date, Ecto.Date
+
+    belongs_to :clinical_history, ClinicApp.ClinicalHistory
   end
 end

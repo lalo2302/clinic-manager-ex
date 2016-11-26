@@ -13,5 +13,12 @@ defmodule ClinicApp.Employee do
     field :rfc
     field :email
     field :job
+
+    belongs_to :user, ClinicApp.User
+    belongs_to :specialty, ClinicApp.Specialty
+
+    has_many :appointments, ClinicApp.Appointment
+    has_many :prescriptions, ClinicApp.Prescription
+    has_many :studies, ClinicApp.Study
   end
 end

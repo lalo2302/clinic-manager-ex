@@ -5,5 +5,7 @@ defmodule ClinicApp.Antecedent do
     field :name
     field :type
     field :description
+
+    belongs_to :clinical_history, ClinicApp.ClinicalHistory
   end
 end

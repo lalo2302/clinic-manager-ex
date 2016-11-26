@@ -5,5 +5,8 @@ defmodule ClinicApp.User do
     field :username
     field :password
     field :level
+
+    has_one :patient, ClinicApp.Patient
+    has_one :employee, ClinicApp.User
   end
 end

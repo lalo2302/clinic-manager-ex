@@ -34,8 +34,8 @@ defmodule ClinicApp.Factory do
       phone: Faker.Phone.EnUs.phone,
       manager: Faker.Name.name,
       #email: Faker.Internet.free_email,
-      open_time: Time.new(8,0,0),
-      close_time: Time.new(17,0,0),
+      open_time: "08:00"
+      close_time: "17:00"
       open_days: "Lun-Vie"
     }
   end
@@ -60,8 +60,8 @@ defmodule ClinicApp.Factory do
       phone: Faker.Phone.EnUs.phone,
       profession: Faker.Company.bullshit,
       gender: "M",
-      curp: "AUOE960223HDFGLD00",
-      rfc: "QCS931209 G49",
+      curp: "AAAA111111HAAAAAA0",
+      rfc: "AAA111111111"
       email: Faker.Internet.free_email,
       job: Faker.Name.title_job
 
@@ -78,8 +78,6 @@ defmodule ClinicApp.Factory do
       address: Faker.Address.street_address,
       phone: Faker.Phone.EnUs.phone, 
       gender: "M",
-      curp: "AUOE960223HDFGLD00",
-      rfc: "QCS931209 G49",
       email: Faker.Internet.free_email,
       # Relation with ClinicalHistory
       # Relation with User
@@ -130,8 +128,8 @@ defmodule ClinicApp.Factory do
     %ClinicApp.Specialty{
       name: Faker.Name.name,
       description: Faker.Company.catch_phrase,
-      opening_time: Time.new(8,0,0),
-      closing_time: Time.new(19,0,0),
+      opening_time: "08:00",
+      closing_time: "15:00",
       extension: Faker.Company.extension(3),
       cost: 200.00 
     }

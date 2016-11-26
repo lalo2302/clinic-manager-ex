@@ -10,5 +10,7 @@ defmodule ClinicApp.Clinic do
     field :open_time, Ecto.Time
     field :close_time, Ecto.Time
     field :open_days
+
+    has_many :clinical_histories, ClinicApp.ClinicalHistory
   end
 end
