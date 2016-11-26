@@ -34,8 +34,8 @@ defmodule ClinicApp.Factory do
       phone: Faker.Phone.EnUs.phone,
       manager: Faker.Name.name,
       #email: Faker.Internet.free_email,
-      open_time: "08:00"
-      close_time: "17:00"
+      open_time: "08:00",
+      close_time: "17:00",
       open_days: "Lun-Vie"
     }
   end
@@ -61,7 +61,7 @@ defmodule ClinicApp.Factory do
       profession: Faker.Company.bullshit,
       gender: "M",
       curp: "AAAA111111HAAAAAA0",
-      rfc: "AAA111111111"
+      rfc: "AAA111111111",
       email: Faker.Internet.free_email,
       job: Faker.Name.title_job
 
