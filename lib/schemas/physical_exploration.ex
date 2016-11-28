@@ -1,7 +1,7 @@
 defmodule ClinicApp.PhysicalExploration do
   use Ecto.Schema
 
-  schema "physical_exploration" do
+  schema "PhysicalExploration" do
     field :temperature, :float
     field :blood_pressure, :float
     field :heart_rate, :integer

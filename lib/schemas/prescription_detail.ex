@@ -1,7 +1,7 @@
 defmodule ClinicApp.PrescriptionDetail do
   use Ecto.Schema
 
-  schema "prescription_detail" do
+  schema "PrescriptionDetail" do
     field :quantity, :integer
     field :price, :float
     field :description

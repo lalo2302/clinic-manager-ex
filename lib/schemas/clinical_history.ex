@@ -2,7 +2,7 @@
 defmodule ClinicApp.ClinicalHistory do
   use Ecto.Schema
 
-  schema "clinical_history" do
+  schema "ClinicalHistory" do
 
     belongs_to :clinic, ClinicApp.Clinic
     belongs_to :patient, ClinicApp.Patient
