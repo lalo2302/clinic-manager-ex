@@ -24,9 +24,9 @@ defmodule ClinicApp.Router do
 
     get "/login", SessionController, :login
 
-    get "/drug", RetrieveController, :drug
+    get "/drug", RetrieveController, :show_drugs
     get "/appointment/existent", RetrieveController, :existent_appointment
-    get "/appointment/day", RetrieveController, :show_day
+    get "/appointment/day", RetrieveController, :show_appointment_day
     get "/appointment/:id", RetrieveController, :show_appointment
     get "/patient", RetrieveController, :all_patients
     get "/patient/:id/appointments", RetrieveController, :show_patient_appointments

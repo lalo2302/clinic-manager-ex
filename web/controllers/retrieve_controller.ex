@@ -1,19 +1,19 @@
 defmodule ClinicApp.RetrieveController do
   use ClinicApp.Web, :controller
 
-  def drug(conn, _params) do
-    text conn, "drug"
+  def show_drugs(conn, _params) do
+    text conn, "show drugs"
   end
 
-  def existent_appointment(conn, _params) do
+  def existent_appointment(conn, %{"date" => date, "id_doctor" => doctor_id}) do
     text conn, "existent appointment"
   end
 
-  def show_day(conn, _params) do
-    text conn, "show day"
+  def show_appointment_day(conn, %{"date" => date}) do
+    text conn, "show appointment day"
   end
 
-  def show_appointment(conn, _params) do
+  def show_appointment(conn, %{"id" => appointment_id}) do
     text conn, "show appointment"
   end
 
@@ -21,7 +21,7 @@ defmodule ClinicApp.RetrieveController do
     text conn, "all patients"
   end
 
-  def show_patient_appointments(conn, _params) do
+  def show_patient_appointments(conn, %{"id" => patient_id}) do
     text conn, "show patient appointments"
   end
 
@@ -33,11 +33,11 @@ defmodule ClinicApp.RetrieveController do
     text conn, "show doctors"
   end
 
-  def show_clinical_history(conn, _params) do
+  def show_clinical_history(conn, %{"id_patient" => patient_id}) do
     text conn, "show clinical history"
   end
 
-  def show_study(conn, _params) do
+  def show_study(conn, %{"id" => study_id}) do
     text conn, "show study"
   end
 
@@ -45,7 +45,7 @@ defmodule ClinicApp.RetrieveController do
     text conn, "show clinics"
   end
 
-  def study_list(conn, _params) do
+  def study_list(conn, %{"id_patient" => patient_id}) do
     text conn, "study list"
   end
 end
