@@ -14,18 +14,17 @@ defmodule ClinicApp.Router do
   end
 
   scope "/", ClinicApp do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :api # Use the default browser stack
 
     get "/", PageController, :index
 
-    get "/drug/status", StockController, :status
-    #POST stock
-    get "/drug/order", StockController, :place_order
-
     get "/login", SessionController, :login
 
+    get "/drug/status", StockController, :status
+    post "/drug/order", StockController, :place_order
+
     get "/drug", RetrieveController, :show_drugs
-    get "/appointment/existent", RetrieveController, :existent_appointment
+    get "/appointment/existent", RetrieveController, :existent_appointments
     get "/appointment/day", RetrieveController, :show_appointment_day
     get "/appointment/:id", RetrieveController, :show_appointment
     get "/patient", RetrieveController, :all_patients
@@ -35,7 +34,7 @@ defmodule ClinicApp.Router do
     get "/history", RetrieveController, :show_clinical_history
     get "/study/:id", RetrieveController, :show_study
     get "/clinic", RetrieveController, :show_clinics
-    get "/study/list", RetrieveController, :study_list
+    get "/study/list/:clinical_id", RetrieveController, :study_list
 
     # POST
     get "/appointment", ClinicApp.CreateController, :appointment

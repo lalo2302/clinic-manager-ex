@@ -1,5 +1,6 @@
 defmodule ClinicApp.Drug do
   use Ecto.Schema
+  import Ecto.Query
 
   schema "drug" do
     field :sku
