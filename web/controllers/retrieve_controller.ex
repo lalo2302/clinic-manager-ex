@@ -1,10 +1,6 @@
 defmodule ClinicApp.RetrieveController do
   use ClinicApp.Web, :controller
 
-  def login(conn, _params) do
-    text conn, "login"
-  end
-
   def drug(conn, _params) do
     text conn, "drug"
   end

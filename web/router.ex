@@ -19,9 +19,11 @@ defmodule ClinicApp.Router do
     get "/", PageController, :index
 
     get "/drug/status", StockController, :status
-    post "/drug/order", StockController, :place_order
+    #POST stock
+    get "/drug/order", StockController, :place_order
 
-    get "/login", SesionController, :login
+    get "/login", SessionController, :login
+
     get "/drug", RetrieveController, :drug
     get "/appointment/existent", RetrieveController, :existent_appointment
     get "/appointment/day", RetrieveController, :show_day
@@ -35,17 +37,19 @@ defmodule ClinicApp.Router do
     get "/clinic", RetrieveController, :show_clinics
     get "/study/list", RetrieveController, :study_list
 
-    post "/appointment", ClinicApp.CreateController, :appointment
-    post "/patient", CreateController, :patient
-    post "/user", CreateController, :user
-    post "/employee", CreateController, :employee
-    post "/antecedent", CreateController, :antecedent
-    post "/ailment", CreateController, :ailment
-    post "/exploration", CreateController, :exploration
-    post "/study", CreateController, :study
+    # POST
+    get "/appointment", ClinicApp.CreateController, :appointment
+    get "/patient", CreateController, :patient
+    get "/user", CreateController, :user
+    get "/employee", CreateController, :employee
+    get "/antecedent", CreateController, :antecedent
+    get "/ailment", CreateController, :ailment
+    get "/exploration", CreateController, :exploration
+    get "/study", CreateController, :study
 
-    put "/appointment/rate", UpdateController, :rate_appointment
-    put "/ailment/end", UpdateController, :end_ailment
+    # PATCH
+    patch "/appointment/rate", UpdateController, :rate_appointment
+    patch "/ailment/end", UpdateController, :end_ailment
   end
 
   # Other scopes may use custom stacks.
