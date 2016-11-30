@@ -8,6 +8,8 @@ defmodule ClinicApp.PhysicalExploration do
     field :breathing_frec, :integer
     field :observations
 
+    timestamps
+
     belongs_to :clinical_history, ClinicApp.ClinicalHistory
   end
 end

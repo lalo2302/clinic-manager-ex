@@ -2,7 +2,7 @@ defmodule ClinicApp.Appointment do
   use Ecto.Schema
 
   schema "appointment" do
-    field :date, Ecto.Date
+    field :date, Ecto.DateTime
     field :type
     field :satisfaction, :integer
     field :status, :integer

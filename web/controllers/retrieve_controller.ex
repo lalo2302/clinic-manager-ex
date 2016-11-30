@@ -9,15 +9,16 @@ defmodule ClinicApp.RetrieveController do
     render(conn, "show_drugs.json", drugs: drugs)
   end
 
-  #TODO: make returning hours
   def existent_appointments(conn, %{"date" => date, "id_doctor" => doctor_id}) do
+    {:ok, myDate} = date <> " 00:00:00" |> Ecto.DateTime.cast
+    {:ok, endDate} = date <> " 23:59:59" |> Ecto.DateTime.cast
     query = from a in ClinicApp.Appointment,
-            preload: [:employee],
-            where: a.date == ^date,
+            where: a.date >= ^myDate,
+            where: a.date < ^endDate,
             where: a.employee_id == ^doctor_id,
-            select: a
-    appointments = ClinicApp.Repo.all(query)
-    render(conn, "existent_appointments.json", appointments: appointments)
+            select: a.date
+    dates = ClinicApp.Repo.all(query)
+    render(conn, "existent_appointments.json", dates: dates)
   end
 
   def show_appointment_day(conn, %{"date" => date}) do
@@ -30,7 +31,6 @@ defmodule ClinicApp.RetrieveController do
     render(conn, "appointment_day.json", appointments: appointments)
   end
 
-  #TODO: para que necesitamos la espcielidad?
   def show_appointment(conn, %{"id" => appointment_id}) do
     appointment = ClinicApp.Repo.get(ClinicApp.Appointment, appointment_id)
                   |> ClinicApp.Repo.preload(:patient)
@@ -62,17 +62,27 @@ defmodule ClinicApp.RetrieveController do
     render(conn, "specialties.json", specialties: specialties)
   end
 
-  #TODO: Como vamos a saber los empleados qué tipo son?
   def show_doctors(conn, _params) do
-    text conn, "show doctors"
+    query = from d in ClinicApp.Employee,
+            preload: [:specialty],
+            where: d.job == "Doctor",
+            select: d
+    doctors = ClinicApp.Repo.all(query)
+    render(conn, "doctors.json", doctors: doctors)
   end
 
   #TODO: Siempre que rollo con esto?
   def show_clinical_history(conn, %{"id_patient" => patient_id}) do
-    text conn, "show clinical history"
+    patient = ClinicApp.Repo.get(ClinicApp.Patient, patient_id) |> ClinicApp.Repo.preload(:clinical_history)
+    clinical_history = patient.clinical_history |> ClinicApp.Repo.preload(:ailments) |> ClinicApp.Repo.preload(:antecedents)
+    ailments = clinical_history.ailments
+    antecedents = clinical_history.antecedents
+    last_exploration = ClinicApp.Repo.one(from x in ClinicApp.PhysicalExploration, where: x.clinical_history_id == ^clinical_history.id, order_by: [desc: x.inserted_at], limit: 1) 
+    
+    render(conn, "clinical_history.json", %{ailments: ailments, antecedents: antecedents, last_exploration: last_exploration})
   end
 
-  #TODO: No lleva type
+  #TODO: Solo tenemos un tipo
   def show_study(conn, %{"id" => study_id}) do
     query = from s in ClinicApp.Study,
             where: s.id == ^study_id,
@@ -88,8 +98,7 @@ defmodule ClinicApp.RetrieveController do
     render(conn, "clinics.json", clinics: clinics)
   end
 
-  #TODO: mejor que se envie el id del historial
-  #TODO: el estudio no tiene type, envio el diagnostico, o le metemos type
+  #TODO: Solo tenemos 1 type
   def study_list(conn, %{"clinical_id" => history_id}) do
     query = from s in ClinicApp.Study,
             where: s.clinical_history_id == ^history_id,

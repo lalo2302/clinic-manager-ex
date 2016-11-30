@@ -13,6 +13,7 @@ defmodule ClinicApp.Employee do
     field :rfc
     field :email
     field :job
+    #TODO: se quedará con profesión, el nivel se guarda en el usuario 
 
     belongs_to :user, ClinicApp.User
     belongs_to :specialty, ClinicApp.Specialty

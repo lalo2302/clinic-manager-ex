@@ -5,6 +5,15 @@ defmodule ClinicApp.RetrieveView do
     %{drugs: render_many(drugs, ClinicApp.RetrieveView, "drug.json")}
   end
 
+  def render("existent_appointments.json", %{dates: dates}) do
+    %{appointments: render_many(dates, ClinicApp.RetrieveView, "appointment_hour.json")}
+  end
+
+  def render("appointment_hour.json", %{retrieve: date}) do
+    [myDate, hour] = String.split(Ecto.DateTime.to_string(date))
+    %{hour: hour}
+  end
+
   def render("appointment_day.json", %{appointments: appointments}) do
     %{appointments: render_many(appointments, ClinicApp.RetrieveView, "appointment_day.json")}
   end
@@ -69,6 +78,34 @@ defmodule ClinicApp.RetrieveView do
      cost: specialty.cost}
   end
 
+  def render("clinical_history.json", %{ailments: ailments, antecedents: antecedents, last_exploration: last_exploration}) do
+    %{ailments: render_many(ailments, ClinicApp.RetrieveView, "ailment.json"),
+     antecedents: render_many(antecedents, ClinicApp.RetrieveView, "antecedent.json"),
+     last_exploration: render_one(last_exploration, ClinicApp.RetrieveView, "physical_exploration.json")}
+  end
+
+  def render("ailment.json", %{retrieve: ailment}) do
+    %{main_symptom: ailment.main_symptom,
+     date_of_detection: ailment.date_of_detection,
+     symptom_location: ailment.symptom_location,
+     colateral_symptom: ailment.colateral_symptom,
+     end_date: ailment.end_date} 
+  end
+
+  def render("antecedent.json", %{retrieve: antecedent}) do
+    %{name: antecedent.name,
+     description: antecedent.description,
+     type: antecedent.type}
+  end
+
+  def render("physical_exploration.json", %{retrieve: exploration}) do
+    %{temperature: exploration.temperature,
+     blood_pressure: exploration.blood_pressure,
+     heart_rate: exploration.heart_rate,
+     breathing_frec: exploration.breathing_frec,
+     observations: exploration.observations}
+  end
+
   def render("study.json", %{study: study}) do
     s = hd(study)
     %{id: s.id,
@@ -98,9 +135,21 @@ defmodule ClinicApp.RetrieveView do
       %{studies: render_many(studies, ClinicApp.RetrieveView, "basic_study.json")}
     end
 
+    #TODO: make type
     def render("basic_study.json", %{retrieve: study}) do
       %{id: study.id,
        date: study.date,
        diagnosis: study.diagnosis}
+    end
+
+    def render("doctors.json", %{doctors: doctors}) do
+      %{doctors: render_many(doctors, ClinicApp.RetrieveView, "doctor.json")}
+    end
+
+    def render("doctor.json", %{retrieve: doctor}) do
+      specialty = doctor.specialty
+      %{id: doctor.id,
+       specialty: specialty.name,
+       name: doctor.name}
     end
 end

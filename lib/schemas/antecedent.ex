@@ -8,4 +8,5 @@ defmodule ClinicApp.Antecedent do
 
     belongs_to :clinical_history, ClinicApp.ClinicalHistory
   end
+
 end
