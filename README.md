@@ -32,7 +32,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | GET  | /patient/:id/appointments | id | {"appointments":[{"type":"primera vez","status":0,"satisfaction":null,"id":3,"doctors_name":"hola","date":"2016-11-29"}]} |
 | GET  | /specialty | NULL | {"specialties":[{"opening_time":"08:08:08","name":"lalo","id":1,"extension":"hola","description":"hola","cost":18.89999962,"closing_time":"08:08:08"}]} |
 | GET  | /doctor | NULL | {"doctors":[{"specialty":"lalo","name":"hola","id":5}]} |
-| GET  | /history | id_patient | **preguntar cómo se va a consumir el historial. Solo se envia ultima ** |
+| GET  | /history | id_patient | {"last_exploration":{"temperature":18.0,"observations":null,"heart_rate":17,"breathing_frec":17,"blood_pressure":17.0},"antecedents":[{"type":"patologico          ","name":"antecedent","description":"antecedent"}],"ailments":[{"symptom_location":"mucho dolor","main_symptom":"dolor","end_date":"2013-01-11","date_of_detection":"2016-01-29","colateral_symptom":"dolor"}]}% |
 | GET  | /study/:id  | <--  |  {"treatment":"study","result":"study","indications":"study","id":1,"diagosis":"study","date":"2016-01-11"} |
 | GET  | /clinic | NULL |{"clinics":[{"phone":"clinicphone","opening_time":"open","open_days":"open","name":"clinic","manager":"clmanager","id":1,"email":"lalo@email.com","closing_time":"close","address":"clinicaddresss"}]} |
 | GET  | /study/list | id_patient | {"studies":[{"id":1, "date":"YYYY-MM-DD", "type":"type"}]} |
