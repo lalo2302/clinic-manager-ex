@@ -39,7 +39,9 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | POST | /drug/order | **Preguntar a equipo de ale** | **Preguntar a equipo de ale** |
 | POST | /appointment | id_patient, date, status, id_doctor | true or false |
 | POST | /patient | name, last-name, date_of_birth, gender, curp, rfc, address, email, phone | true or false |
-| POST | /user | id_patient, username, password, level | true or false |
+| POST | /patient/user | id_patient, username, password | true or false |
+| POST | /doctor/user | id_doctor, username, password | true or false |
+| POST | /administrative/user | id_admin, username, password | true or false |
 | POST | /employee | **Preguntar a laura** | true or false |
 | POST | /antecedent | id_history, type, name, description | true or false |
 | POST | /ailment | id_history,main_symtopm, colateral_symptom, symptom_localization | true or false |
