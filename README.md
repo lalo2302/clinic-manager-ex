@@ -22,7 +22,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 # Definición de endpoints
 | HTTP | Ruta      | Parámetros | Respuesta |
 | :--: | :-------: | :--------: | :-------: |
-| GET  | /login    | username, password | {"patient_id":2,"level":"doctor"} |
+| GET  | /login    | username, password | {"person_id":2,"level":"doctor","clinical_history_id":1}% |
 | GET  | /drug/status | NULL   | Drug[id, name, quantity] or false |
 | GET  | /drug | NULL |{"drugs":[{"quantity":4,"price":90.0,"name":"drug","id":1}]} |
 | GET  | /appointment/existent | date, id_doctor | hours] |
@@ -31,7 +31,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | GET  | /patient | NULL | {"patients":[{"name":"Lalo","id_clinic_history":1,"id":2}]}% | 
 | GET  | /patient/:id/appointments | id | {"appointments":[{"type":"primera vez","status":0,"satisfaction":null,"id":3,"doctors_name":"hola","date":"2016-11-29"}]}% |
 | GET  | /specialty | NULL | {"specialties":[{"opening_time":"08:08:08","name":"lalo","id":1,"extension":"hola","description":"hola","cost":18.89999962,"closing_time":"08:08:08"}]}% |
-| GET  | /doctor | NULL | Doctors[id, name, specialty] |
+| GET  | /doctor | NULL | {"doctors":[{"specialty":"lalo","name":"hola","id":5}]} |
 | GET  | /history | id_patient | **preguntar cómo se va a consumir el historial. Solo se envia ultima ** |
 | GET  | /study/:id  | <--  |  {"treatment":"study","result":"study","indications":"study","id":1,"diagosis":"study","date":"2016-01-11"}% |
 | GET  | /clinic | NULL |{"clinics":[{"phone":"clinicphone","opening_time":"open","open_days":"open","name":"clinic","manager":"clmanager","id":1,"email":"lalo@email.com","closing_time":"close","address":"clinicaddresss"}]}% |
