@@ -7,8 +7,8 @@ defmodule ClinicApp.StockController do
             where: d.quantity <= 10,
             select: d
     drugs = ClinicApp.Repo.all(query)
-    if is_nil(drugs) do
-      text conn, "false"
+    if Enum.empty?(drugs) do
+      json conn, %{result: false} 
     else
       render(conn, "drugs_status.json", %{drugs: drugs})
     end

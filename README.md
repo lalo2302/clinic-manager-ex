@@ -23,7 +23,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | HTTP | Ruta      | Parámetros | Respuesta |
 | :--: | :-------: | :--------: | :-------: |
 | GET  | /login    | username, password | {"person_id":2,"level":"doctor","clinical_history_id":1} |
-| GET  | /drug/status | NULL   | {"drugs":[{"quantity":4,"name":"drug","id":1},{"quantity":8,"name":"drug4","id":4}]} |
+| GET  | /drug/status | NULL   | {"drugs":[{"quantity":4,"name":"drug","id":1},{"quantity":8,"name":"drug4","id":4}]} **or** {"result":false}%|
 | GET  | /drug | NULL |{"drugs":[{"quantity":4,"price":90.0,"name":"drug","id":1}]} |
 | GET  | /appointment/existent | date, id_doctor | {"appointments":[{"hour":"08:00:00"},{"hour":"09:00:00"}]} |
 | GET  | /appointment/day | date=YYYY-MM-DD | {"appointments":[{"patient_name":"Lalo","id":3}]} |
