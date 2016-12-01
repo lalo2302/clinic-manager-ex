@@ -21,6 +21,11 @@ defmodule ClinicApp.CreateView do
     %{id: exploration.id}
   end
 
+  def render("patient.json", %{patient: patient, clinical_history: history}) do
+    %{id: patient.id,
+     clinical_history_id: history.id}
+  end
+
   def render("appointment.json", %{appointment: appointment}) do
     %{id: appointment.id}
   end

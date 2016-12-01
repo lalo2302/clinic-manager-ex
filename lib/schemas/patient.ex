@@ -1,5 +1,6 @@
 defmodule ClinicApp.Patient do
   use Ecto.Schema
+  import Ecto.Changeset
 
   schema "patient" do
     field :name
@@ -23,5 +24,11 @@ defmodule ClinicApp.Patient do
     has_many :antecedents, through: [:clinical_history, :antecedents]
     has_many :ailments, through: [:clinical_history, :ailments]
     has_many :physical_explorations, through: [:clinical_history, :physical_explorations]
+  end
+
+  def changeset(model, params) do
+    required_params = ~w(name last_name date_of_birth address phone gender curp rfc email)
+    changeset = cast(model, params, required_params)
+    changeset 
   end
 end

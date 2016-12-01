@@ -10,8 +10,18 @@ defmodule ClinicApp.CreateController do
     end 
   end
 
-  def patient(conn, %{"name" => name, "last_name" => last_name, "date_of_birth" => date_of_birth, "gender" => gender, "curp" => curp, "rfc" => rfc, "address" => address, "email" => email, "phone" => phone}) do
-    text conn, "patient"
+  def patient(conn, %{"patient" => params}) do
+    changeset = ClinicApp.Patient.changeset(%ClinicApp.Patient{}, params)
+
+    case ClinicApp.Repo.insert(changeset) do
+      {:ok, patient} -> 
+        clinical_history = %ClinicApp.ClinicalHistory{patient_id: patient.id, clinic_id: 1}
+        case ClinicApp.Repo.insert(clinical_history) do
+          {:ok, history} -> render(conn, "patient.json", %{patient: patient, clinical_history: history})
+          {:error, changeset} -> render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
+        end
+      {:error, changeset} -> render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
+    end
   end
 
   # def user(conn, %{"id_patient" => patient_id, "username" => username, "password" => password, "level" => level}) do
