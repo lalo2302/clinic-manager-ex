@@ -11,24 +11,29 @@ defmodule ClinicApp.User do
     has_one :employee, ClinicApp.Employee
   end
 
-  @required_fields ~w(username password)
   @optional_field ~w()
 
   def patient_changeset(model, params) do
+    required_params = ~w(username password)
     model
-    |> cast(params, @required_fields)
+    |> cast(params, required_params)
     |> put_change(:level, ClinicApp.LevelType.patient)
     |> unique_constraint(:username, name: "UC_User_Name")
   end
 
   def doctor_changeset(model, params) do
+    required_params = ~w(username password)
     model
-    |> cast(params, @required_fields)
+    |> cast(params, required_params)
     |> put_change(:level, ClinicApp.LevelType.doctor)
     |> unique_constraint(:username, name: "UC_User_Name")
   end
 
-  defp unique_username(username) do
-    
+  def admin_changeset(model, params) do
+    required_params = ~w(username password)
+    model
+    |> cast(params, required_params)
+    |> put_change(:level, ClinicApp.LevelType.administrative)
+    |> unique_constraint(:username, name: "UC_User_Name")
   end
 end

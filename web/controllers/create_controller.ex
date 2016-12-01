@@ -27,7 +27,7 @@ defmodule ClinicApp.CreateController do
   # def user(conn, %{"id_patient" => patient_id, "username" => username, "password" => password, "level" => level}) do
   def patient_user(conn, %{"username" => username, "password" => password, "id_patient" => patient_id}) do
     changeset = ClinicApp.User.patient_changeset(%ClinicApp.User{}, %{username: username, password: password})
-    
+
     case ClinicApp.Repo.insert(changeset) do
       {:ok, user} ->
         patient = ClinicApp.Repo.get(ClinicApp.Patient, patient_id)
@@ -43,18 +43,36 @@ defmodule ClinicApp.CreateController do
     end
   end
 
-  def doctor_user(conn, %{"username" => username, "password" => password, "id_doctor" => doctor_id}) do
+  def doctor_user(conn, %{"username" => username, "password" => password, "id_employee" => employee_id}) do
     changeset = ClinicApp.User.doctor_changeset(%ClinicApp.User{}, %{username: username, password: password})
 
     case ClinicApp.Repo.insert(changeset) do
       {:ok, user} ->
-        doctor = ClinicApp.Repo.get(ClinicApp.Patient, doctor_id)
-        doctor = %{ doctor | user_id: user.id }
-        case ClinicApp.Repo.update(doctor) do
+        employee = ClinicApp.Repo.get(ClinicApp.Employee, employee_id)
+        employee = %{ employee | user_id: user.id }
+        case ClinicApp.Repo.update(employee) do
           {:ok, update} -> IO.puts "RELACION DOCTOR USUARIO HECHA"
           {:error, error} -> render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
         end
-        render(conn, "employee_login.json", %{employee: doctor, level: user.level})
+        render(conn, "employee.json", %{id: user.id})
+      {:error, changeset} ->
+        conn
+        |> render(ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
+    end
+  end
+
+  def admin_user(conn, %{"username" => username, "password" => password, "id_employee" => employee_id}) do
+    changeset = ClinicApp.User.admin_changeset(%ClinicApp.User{}, %{username: username, password: password})
+
+    case ClinicApp.Repo.insert(changeset) do
+      {:ok, user} ->
+        employee = ClinicApp.Repo.get(ClinicApp.Employee, employee_id)
+        employee = %{ employee | user_id: user.id }
+        case ClinicApp.Repo.update(employee) do
+          {:ok, update} -> IO.puts "RELACION DOCTOR USUARIO HECHA"
+          {:error, error} -> render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
+        end
+        render(conn, "employee.json", %{id: user.id})
       {:error, changeset} ->
         conn
         |> render(ClinicApp.ChangesetView, "error.json", %{changeset: changeset})

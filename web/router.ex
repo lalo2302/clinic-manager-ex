@@ -36,12 +36,11 @@ defmodule ClinicApp.Router do
     get "/study/:id", RetrieveController, :show_study
     get "/clinic", RetrieveController, :show_clinics
     get "/study/list/:clinical_id", RetrieveController, :study_list
-    get "/patient/user", CreateController, :patient_user
 
     # POST
     post "/appointment", CreateController, :appointment
     post "/patient", CreateController, :patient
-    post "/employee/user", CreateController, :employee_user
+    post "/doctor/user", CreateController, :doctor_user
     post "/administrative/user", CreateController, :admin_user
     post "/patient/user", CreateController, :patient_user
     post "/employee", CreateController, :employee
