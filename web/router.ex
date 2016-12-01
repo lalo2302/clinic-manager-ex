@@ -51,7 +51,7 @@ defmodule ClinicApp.Router do
     get "/study", CreateController, :study
 
     # PATCH
-    put "/appointment/rate", UpdateController, :rate_appointment
+    get "/appointment/:id/rate", UpdateController, :rate_appointment
     put "/ailment/end", UpdateController, :end_ailment
   end
 
