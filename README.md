@@ -47,7 +47,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | POST | /employee | {"employee":{"name":"lalo","last_name":"lalo","date_birth":"2010-02-02","gender":"M","curp":"AAAA000000HAAAAA00","rfc":"AAAA000000000","address":"address","email":"lalo@lalo.com","phone":"4777867","profession":"doctor","job":"doctor","specialty_id":1}} | {"id":8} |
 | POST | /antecedent | {"antecedent":{"name":"lalo","description":"descripcion","type":"heredofamiliar","clinical_history_id":"1"}}| {"id":10}|
 | POST | /ailment | {"ailment":{"main_symptom":"enfermo","date_of_detection":"2016-02-02","symptom_location":"brazo","colateral_symptom":"enfermo","clinical_history_id":1}} | {"id":4} |
-| POST | /exploration | id_history, temperature, blood_pressure, heart_rate, breathing_frec, observations | true or false |
+| POST | /exploration | {"exploration":{"temperature":17.0,"blood_pressure":17.0,"heart_rate":17,"breathing_frec":17,"observations":"lalala","clinical_history_id":"1"}} | {"id":1002}|
 | POST | /study | date, type, diagnosis, result, indications, treatment, id_doctor, id_history | true or false |
 | PUT | /appointment/rate | id, rate | true or false |
 | PUT | /ailment/end | id | true **or** false |

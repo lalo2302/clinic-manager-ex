@@ -77,8 +77,15 @@ defmodule ClinicApp.CreateController do
     end
   end
 
-  def exploration(conn, %{"id_history" => history_id, "temperature" => temperature, "blood_pressure" => blood_pressure, "heart_rate" => heart_rate, "breathing_frec" => breathing_frec, "observations" => observations}) do
-    text conn, "exploration"
+  def exploration(conn, %{"exploration" => params}) do
+    changeset = ClinicApp.PhysicalExploration.changeset(%ClinicApp.PhysicalExploration{}, params)
+
+    case ClinicApp.Repo.insert(changeset) do
+    {:ok, exploration} -> render(conn, "exploration.json", %{exploration: exploration})
+    {:error, changeset} -> 
+      IO.puts changeset.errors   
+     render(ClinicApp.ChangesetView, "error.json")
+    end
   end
 
   def study(conn, %{"date" => date, "type" => type, "diagnosis" => diagnosis, "result" => result, "indications" => indications, "id_doctor" => doctor_id, "id_history" => history_id}) do
