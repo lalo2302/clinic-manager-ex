@@ -39,7 +39,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | GET  | /clinic | NULL |{"clinics":[{"phone":"clinicphone","opening_time":"open","open_days":"open","name":"clinic","manager":"clmanager","id":1,"email":"lalo@email.com","closing_time":"close","address":"clinicaddresss"}]} |
 | GET  | /study/list | id_patient | {"studies":[{"id":1, "date":"YYYY-MM-DD", "type":"type"}]} |
 | POST | /drug/order | **Preguntar a equipo de ale** | **Preguntar a equipo de ale** |
-| POST | /appointment | id_patient, date("YYYY-MM-DD 00:00:00"), status, id_doctor | true or false |
+| POST | /appointment | {"appointment":{"date":"2010-02-02 10:00:00","type":"rutina","patient_id":2,"employee_id":5}}| {"id":9}|
 | POST | /patient | name, last-name, date_of_birth, gender, curp, rfc, address, email, phone | true or false |
 | POST | /patient/user | id_patient, username, password | {"result":"true"} |
 | POST | /doctor/user | id_doctor, username, password | true or false |

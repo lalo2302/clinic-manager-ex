@@ -62,7 +62,7 @@ defmodule ClinicApp.Factory do
       curp: "AAAA111111HAAAAAA0",
       rfc: "AAA111111111",
       email: Faker.Internet.free_email,
-      job: Faker.Name.title_job
+      job: Faker.Name.title
 
       # Specialty 1
       # User 1

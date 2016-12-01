@@ -1,8 +1,13 @@
 defmodule ClinicApp.CreateController do
   use ClinicApp.Web, :controller
 
-  def appointment(conn, %{"id_patient" => patient_id, "date" => date, "status" => status, "id_doctor" =>doctor_id}) do
-    text conn, "appointment"
+  def appointment(conn, %{"appointment" => params}) do
+    changeset = ClinicApp.Appointment.changeset(%ClinicApp.Appointment{}, params)
+
+    case ClinicApp.Repo.insert(changeset) do
+      {:ok, appointment} -> render(conn, "appointment.json", %{appointment: appointment})
+      {:error, changeset} -> render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
+    end 
   end
 
   def patient(conn, %{"name" => name, "last_name" => last_name, "date_of_birth" => date_of_birth, "gender" => gender, "curp" => curp, "rfc" => rfc, "address" => address, "email" => email, "phone" => phone}) do
@@ -19,12 +24,12 @@ defmodule ClinicApp.CreateController do
         patient = %{ patient | user_id: user.id }
         case ClinicApp.Repo.update(patient) do
           {:ok, update} -> IO.puts "RELACION PACIENTE USUARIO HECHA"
-          {:error, error} -> render(ClinicApp.ChangesetView, "error.json")
+          {:error, error} -> render(ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
         end
         render(conn, "user.json", %{user: user})
       {:error, changeset} ->
         conn
-        |> render(ClinicApp.ChangesetView, "error.json")
+        |> render(ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
     end
   end
 
@@ -37,12 +42,12 @@ defmodule ClinicApp.CreateController do
         doctor = %{ doctor | user_id: user.id }
         case ClinicApp.Repo.update(doctor) do
           {:ok, update} -> IO.puts "RELACION DOCTOR USUARIO HECHA"
-          {:error, error} -> render(ClinicApp.ChangesetView, "error.json")
+          {:error, error} -> render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
         end
         render(conn, "employee_login.json", %{employee: doctor, level: user.level})
       {:error, changeset} ->
         conn
-        |> render(ClinicApp.ChangesetView, "error.json")
+        |> render(ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
     end
   end
 
@@ -53,7 +58,7 @@ defmodule ClinicApp.CreateController do
     case ClinicApp.Repo.insert(changeset) do
       {:ok, employee} ->
         render(conn, "employee.json", %{id: employee.id})
-      {:error, error} -> render(ClinicApp.ChangesetView, "error.json")
+      {:error, error} -> render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
     end
   end
 
@@ -64,7 +69,7 @@ defmodule ClinicApp.CreateController do
     case ClinicApp.Repo.insert(changeset) do
       {:ok, antecedent} ->
         render(conn, "antecedent.json", %{antecedent: antecedent})
-      {:error, error} -> render(ClinicApp.ChangesetView, "error.json")
+      {:error, error} -> render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
     end
   end
 
@@ -73,7 +78,7 @@ defmodule ClinicApp.CreateController do
 
     case ClinicApp.Repo.insert(changeset) do
       {:ok, ailment} -> render(conn, "ailment.json", %{ailment: ailment})
-      {:error, changeset} -> render(ClinicApp.ChagesetView, "error.json")
+      {:error, changeset} -> render(conn, ClinicApp.ChagesetView, "error.json", %{changeset: changeset})
     end
   end
 
@@ -83,8 +88,7 @@ defmodule ClinicApp.CreateController do
     case ClinicApp.Repo.insert(changeset) do
     {:ok, exploration} -> render(conn, "exploration.json", %{exploration: exploration})
     {:error, changeset} -> 
-      IO.puts changeset.errors   
-     render(ClinicApp.ChangesetView, "error.json")
+     render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
     end
   end
 

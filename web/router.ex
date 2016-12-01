@@ -39,7 +39,7 @@ defmodule ClinicApp.Router do
     get "/patient/user", CreateController, :patient_user
 
     # POST
-    get "/appointment", ClinicApp.CreateController, :appointment
+    post "/appointment", CreateController, :appointment
     post "/patient", CreateController, :patient
     post "/employee/user", CreateController, :employee_user
     post "/administrative/user", CreateController, :admin_user
