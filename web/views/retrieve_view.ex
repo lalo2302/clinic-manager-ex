@@ -57,7 +57,8 @@ defmodule ClinicApp.RetrieveView do
      gender: patient.gender,
      curp: patient.curp,
      rfc: patient.rfc,
-     email: patient.email}
+     email: patient.email,
+     clinical_history_id: patient.clinical_history.id}
   end
 
   def render("basic_patient.json", %{retrieve: patient}) do

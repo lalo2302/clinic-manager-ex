@@ -51,7 +51,11 @@ defmodule ClinicApp.RetrieveController do
 
   #TODO: Registrar el id del historial
   def patient(conn, %{"id" => id}) do
-    patient = ClinicApp.Repo.get(ClinicApp.Patient, id)
+    query = from p in ClinicApp.Patient,
+            where: p.id == ^id,
+            preload: [:clinical_history],
+            select: p
+    patient = ClinicApp.Repo.one(query)
     render(conn, "patient.json", %{patient: patient})
   end
 
