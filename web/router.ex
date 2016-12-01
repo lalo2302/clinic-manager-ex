@@ -29,7 +29,8 @@ defmodule ClinicApp.Router do
     get "/appointment/:id", RetrieveController, :show_appointment
     get "/patient", RetrieveController, :all_patients
     get "/patient/:id", RetrieveController, :patient
-    get "/patient/:id/appointments", RetrieveController, :show_patient_appointments
+    get "/patient/:id/past/appointments", RetrieveController, :show_patient_past_appointments
+    get "/patient/:id/post/appointments", RetrieveController, :show_patient_post_appointments
     get "/specialty", RetrieveController, :show_specialties
     get "/doctor", RetrieveController, :show_doctors
     get "/history", RetrieveController, :show_clinical_history

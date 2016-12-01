@@ -120,6 +120,7 @@ defmodule ClinicApp.CreateController do
     end
   end
 
+  #TODO: Hacer que te retorne el id del estudio
   def study(conn, %{"date" => date, "type" => type, "diagnosis" => diagnosis, "result" => result, "indications" => indications, "id_doctor" => doctor_id, "id_history" => history_id}) do
     text conn, "study"
   end

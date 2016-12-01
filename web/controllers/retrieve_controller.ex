@@ -49,18 +49,38 @@ defmodule ClinicApp.RetrieveController do
     render(conn, "patients.json", patients: patients)
   end
 
+  #TODO: Registrar el id del historial
   def patient(conn, %{"id" => id}) do
     patient = ClinicApp.Repo.get(ClinicApp.Patient, id)
     render(conn, "patient.json", %{patient: patient})
   end
 
-  def show_patient_appointments(conn, %{"id" => patient_id}) do
+  def show_patient_past_appointments(conn, %{"id" => patient_id}) do
+    date = Ecto.DateTime.utc
     query = from a in ClinicApp.Appointment,
             preload: [:employee],
             where: a.patient_id == ^patient_id,
+            where: a.date < ^date,
+            order_by: a.date,
             select: a
+
     appointments = ClinicApp.Repo.all(query)
-    render(conn, "patient_appointments.json", appointments: appointments)
+
+    render(conn, "patient_appointments.json", %{appointments: appointments})
+  end
+
+  def show_patient_post_appointments(conn, %{"id" => patient_id}) do
+    date = Ecto.DateTime.utc
+    query = from a in ClinicApp.Appointment,
+            preload: [:employee],
+            where: a.patient_id == ^patient_id,
+            where: a.date >= ^date,
+            order_by: a.date,
+            select: a
+
+    appointments = ClinicApp.Repo.all(query)
+
+    render(conn, "patient_appointments.json", %{appointments: appointments})
   end
 
   def show_specialties(conn, _params) do

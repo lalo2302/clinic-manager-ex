@@ -68,7 +68,7 @@ defmodule ClinicApp.RetrieveView do
   end
 
   def render("patient_appointments.json", %{appointments: appointments}) do
-   %{appointments: render_many(appointments, ClinicApp.RetrieveView, "patient_appointment.json")} 
+    %{ appointments: render_many(appointments, ClinicApp.RetrieveView, "patient_appointment.json") }
   end
 
   def render("patient_appointment.json", %{retrieve: appointment}) do
