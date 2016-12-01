@@ -44,6 +44,22 @@ defmodule ClinicApp.RetrieveView do
     %{patients: render_many(patients, ClinicApp.RetrieveView, "basic_patient.json")} 
   end
 
+  def render("patient.json", %{patient: patient}) do
+    %{patient: render_one(patient, ClinicApp.RetrieveView, "patient.json")}
+  end
+
+  def render("patient.json", %{retrieve: patient}) do
+    %{name: patient.name,
+     last_name: patient.last_name,
+     date_of_birth: patient.date_of_birth,
+     address: patient.address,
+     phone: patient.phone,
+     gender: patient.gender,
+     curp: patient.curp,
+     rfc: patient.rfc,
+     email: patient.email}
+  end
+
   def render("basic_patient.json", %{retrieve: patient}) do
     clinical_history = patient.clinical_history
     %{id: patient.id,

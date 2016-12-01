@@ -49,11 +49,9 @@ defmodule ClinicApp.RetrieveController do
     render(conn, "patients.json", patients: patients)
   end
 
-  def patient(conn, %{id: id}) do
-    query = from p in ClinicApp.Patient,
-            where: p.id == ^id,
-            select: p
-            #patient 
+  def patient(conn, %{"id" => id}) do
+    patient = ClinicApp.Repo.get(ClinicApp.Patient, id)
+    render(conn, "patient.json", %{patient: patient})
   end
 
   def show_patient_appointments(conn, %{"id" => patient_id}) do

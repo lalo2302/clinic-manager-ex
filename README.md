@@ -29,7 +29,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | GET  | /appointment/day | date=YYYY-MM-DD&id_doctor=5 | {"appointments":[{"patient_name":"Lalo","patient_id":2,"appointment_id":6},{"patient_name":"Lalo","patient_id":2,"appointment_id":7}]} |
 | GET  | /appointment/:id | <-- | {"patients_name":"Lalo","doctors_name":"hola","date":"2016-11-29"} |
 | GET  | /patient | NULL | {"patients":[{"name":"Lalo","id_clinic_history":1,"id":2}]} | 
-| GET  | /patient/:id | <-- |  |
+| GET  | /patient/:id | <-- | {"patient":{"rfc":"AAAA000000000","phone":"477787878","name":"Lalo","last_name":"Aguilera","gender":"M","email":"lalo@lalo.com","date_of_birth":"1996-02-23","curp":"AAAA000000HAAAAA00","address":"mi casa"}} |
 | GET  | /patient/:id/appointments | id | {"appointments":[{"type":"primera vez","status":0,"satisfaction":null,"id":3,"doctors_name":"hola","date":"2016-11-29"}]} |
 | GET  | /specialty | NULL | {"specialties":[{"opening_time":"08:08:08","name":"lalo","id":1,"extension":"hola","description":"hola","cost":18.89999962,"closing_time":"08:08:08"}]} |
 | GET  | /doctor | NULL | {"doctors":[{"specialty":"lalo","name":"hola","id":5}]} |
