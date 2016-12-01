@@ -68,8 +68,13 @@ defmodule ClinicApp.CreateController do
     end
   end
 
-  def ailment(conn, %{"id_history" => history_id, "main_symptom" => main_symptom, "colateral_symptom" => colateral_symptom, "symptom_localization" => symptom_localization}) do
-    text conn, "ailment"
+  def ailment(conn, %{"ailment" => params}) do
+    changeset = ClinicApp.Ailment.insert_changeset(%ClinicApp.Ailment{}, params)
+
+    case ClinicApp.Repo.insert(changeset) do
+      {:ok, ailment} -> render(conn, "ailment.json", %{ailment: ailment})
+      {:error, changeset} -> render(ClinicApp.ChagesetView, "error.json")
+    end
   end
 
   def exploration(conn, %{"id_history" => history_id, "temperature" => temperature, "blood_pressure" => blood_pressure, "heart_rate" => heart_rate, "breathing_frec" => breathing_frec, "observations" => observations}) do

@@ -16,5 +16,4 @@ defmodule ClinicApp.Antecedent do
     model
     |> cast(params, @required_params)
   end
-
 end

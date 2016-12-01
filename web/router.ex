@@ -46,7 +46,7 @@ defmodule ClinicApp.Router do
     post "/patient/user", CreateController, :patient_user
     post "/employee", CreateController, :employee
     post "/antecedent", CreateController, :antecedent
-    get "/ailment", CreateController, :ailment
+    post "/ailment", CreateController, :ailment
     get "/exploration", CreateController, :exploration
     get "/study", CreateController, :study
 
