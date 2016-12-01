@@ -49,6 +49,6 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | POST | /ailment | {"ailment":{"main_symptom":"enfermo","date_of_detection":"2016-02-02","symptom_location":"brazo","colateral_symptom":"enfermo","clinical_history_id":1}} | {"id":4} |
 | POST | /exploration | {"exploration":{"temperature":17.0,"blood_pressure":17.0,"heart_rate":17,"breathing_frec":17,"observations":"lalala","clinical_history_id":"1"}} | {"id":1002}|
 | POST | /study | date, type, diagnosis, result, indications, treatment, id_doctor, id_history | true or false |
-| PUT | /appointment/rate | id, rate | true or false |
-| PUT | /ailment/end | id | true **or** false |
+| PUT | /appointment/rate | id, rate | {"id":5} |
+| PUT | /ailment/end | id | {"id":4}|
 

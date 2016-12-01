@@ -50,8 +50,8 @@ defmodule ClinicApp.Router do
     get "/study", CreateController, :study
 
     # PATCH
-    patch "/appointment/rate", UpdateController, :rate_appointment
-    patch "/ailment/end", UpdateController, :end_ailment
+    put "/appointment/rate", UpdateController, :rate_appointment
+    put "/ailment/end", UpdateController, :end_ailment
   end
 
   # Other scopes may use custom stacks.
