@@ -28,6 +28,7 @@ defmodule ClinicApp.Router do
     get "/appointment/day", RetrieveController, :show_appointment_day
     get "/appointment/:id", RetrieveController, :show_appointment
     get "/patient", RetrieveController, :all_patients
+    get "/patient/:id", RetrieveController, :patient
     get "/patient/:id/appointments", RetrieveController, :show_patient_appointments
     get "/specialty", RetrieveController, :show_specialties
     get "/doctor", RetrieveController, :show_doctors
@@ -44,7 +45,7 @@ defmodule ClinicApp.Router do
     post "/administrative/user", CreateController, :admin_user
     post "/patient/user", CreateController, :patient_user
     post "/employee", CreateController, :employee
-    get "/antecedent", CreateController, :antecedent
+    post "/antecedent", CreateController, :antecedent
     get "/ailment", CreateController, :ailment
     get "/exploration", CreateController, :exploration
     get "/study", CreateController, :study

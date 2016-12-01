@@ -46,12 +46,9 @@ defmodule ClinicApp.CreateController do
     end
   end
 
-  #TODO: doind this
-  # def employee(conn, %{"name" => name, "last_name" => last_name, "date_of_birth" => date_birth, "gender" => gender, "curp" => curp, "rfc" => rfc, "address" => address, "email" => email, "phone" => phone, "profession" => profession, "job" => job, "specialty_id" => specialty_id}) do
-    def employee(conn, %{"employee" => params}) do
+  def employee(conn, %{"employee" => params}) do
 
-      #changeset = ClinicApp.Employee.changeset(%ClinicApp.Employee{}, %{name: name, last_name: last_name, date_birth: date_birth, gender: gender, curp: curp, rfc: rfc, address: address, email: email, phone: phone, profession: profession, job: job, specialty_id: specialty_id})
-      changeset = ClinicApp.Employee.changeset(%ClinicApp.Employee{}, params)
+    changeset = ClinicApp.Employee.changeset(%ClinicApp.Employee{}, params)
 
     case ClinicApp.Repo.insert(changeset) do
       {:ok, employee} ->
@@ -60,8 +57,15 @@ defmodule ClinicApp.CreateController do
     end
   end
 
-  def antecedent(conn, %{"id_history" => history_id, "type" => type, "name" => name, "description" => description}) do
-    text conn, "antecedent"
+  def antecedent(conn, %{"antecedent" => params}) do
+
+    changeset = ClinicApp.Antecedent.changeset(%ClinicApp.Antecedent{}, params)
+
+    case ClinicApp.Repo.insert(changeset) do
+      {:ok, antecedent} ->
+        render(conn, "antecedent.json", %{antecedent: antecedent})
+      {:error, error} -> render(ClinicApp.ChangesetView, "error.json")
+    end
   end
 
   def ailment(conn, %{"id_history" => history_id, "main_symptom" => main_symptom, "colateral_symptom" => colateral_symptom, "symptom_localization" => symptom_localization}) do

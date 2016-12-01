@@ -26,7 +26,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | GET  | /drug/status | NULL   | {"drugs":[{"quantity":4,"name":"drug","id":1},{"quantity":8,"name":"drug4","id":4}]} **or** {"result":false}%|
 | GET  | /drug | NULL |{"drugs":[{"quantity":4,"price":90.0,"name":"drug","id":1}]} |
 | GET  | /appointment/existent | date, id_doctor | {"appointments":[{"hour":"08:00:00"},{"hour":"09:00:00"}]} |
-| GET  | /appointment/day | date=YYYY-MM-DD | {"appointments":[{"patient_name":"Lalo","id":3}]} |
+| GET  | /appointment/day | date=YYYY-MM-DD&id_doctor=5 | {"appointments":[{"patient_name":"Lalo","patient_id":2,"appointment_id":6},{"patient_name":"Lalo","patient_id":2,"appointment_id":7}]} |
 | GET  | /appointment/:id | <-- | {"patients_name":"Lalo","doctors_name":"hola","date":"2016-11-29"} |
 | GET  | /patient | NULL | {"patients":[{"name":"Lalo","id_clinic_history":1,"id":2}]} | 
 | GET  | /patient/:id | <-- |  |

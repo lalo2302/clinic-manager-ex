@@ -8,4 +8,8 @@ defmodule ClinicApp.CreateView do
   def render("employee.json", %{id: id}) do
     %{id: id}
   end
+
+  def render("antecedent.json", %{antecedent: antecedent}) do
+    %{id: antecedent.id}
+  end
 end

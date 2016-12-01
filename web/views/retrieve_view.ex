@@ -27,7 +27,8 @@ defmodule ClinicApp.RetrieveView do
 
   def render("appointment_day.json", %{retrieve: appointment}) do
     patient = appointment.patient
-    %{id: appointment.id,
+    %{appointment_id: appointment.id,
+      patient_id: patient.id,
       patient_name: patient.name}
   end
 

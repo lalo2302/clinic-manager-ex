@@ -21,11 +21,14 @@ defmodule ClinicApp.RetrieveController do
     render("existent_appointments.json", dates: dates)
   end
 
-  def show_appointment_day(conn, %{"date" => date}) do
-    ecto_date = Ecto.Date.cast(date)
+  def show_appointment_day(conn, %{"date" => date, "id_doctor" => doctor_id}) do
+    {:ok, my_date} = date <> " 00:00:00" |> Ecto.DateTime.cast
+    {:ok, end_date} = date <> " 23:59:59" |> Ecto.DateTime.cast
     query = from a in ClinicApp.Appointment,
+            where: a.date >= ^my_date,
+            where: a.date < ^end_date,
+            where: a.employee_id == ^doctor_id,
             preload: [:patient],
-            where: a.date == ^date,
             select: a
     appointments = ClinicApp.Repo.all(query)
     render(conn, "appointment_day.json", appointments: appointments)
@@ -44,6 +47,13 @@ defmodule ClinicApp.RetrieveController do
             select: p
     patients = ClinicApp.Repo.all(query)
     render(conn, "patients.json", patients: patients)
+  end
+
+  def patient(conn, %{id: id}) do
+    query = from p in ClinicApp.Patient,
+            where: p.id == ^id,
+            select: p
+            #patient 
   end
 
   def show_patient_appointments(conn, %{"id" => patient_id}) do
