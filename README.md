@@ -22,7 +22,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 # Definición de endpoints
 | HTTP | Ruta      | Parámetros | Respuesta |
 | :--: | :-------: | :--------: | :-------: |
-| GET  | /login    | username, password | {"person_id":2,"level":"doctor","clinical_history_id":1} |
+| GET  | /login    | username, password | {"user":{"name":"hola","level":"doctor","id":5}} |
 | GET  | /drug/status | NULL   | {"drugs":[{"quantity":4,"name":"drug","id":1},{"quantity":8,"name":"drug4","id":4}]} **or** {"result":false}%|
 | GET  | /drug | NULL |{"drugs":[{"quantity":4,"price":90.0,"name":"drug","id":1}]} |
 | GET  | /appointment/existent | date, id_doctor | {"appointments":[{"hour":"08:00:00"},{"hour":"09:00:00"}]} |
@@ -39,7 +39,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | POST | /drug/order | **Preguntar a equipo de ale** | **Preguntar a equipo de ale** |
 | POST | /appointment | id_patient, date, status, id_doctor | true or false |
 | POST | /patient | name, last-name, date_of_birth, gender, curp, rfc, address, email, phone | true or false |
-| POST | /patient/user | id_patient, username, password | true or false |
+| POST | /patient/user | id_patient, username, password | {"result":"true"} |
 | POST | /doctor/user | id_doctor, username, password | true or false |
 | POST | /administrative/user | id_admin, username, password | true or false |
 | POST | /employee | **Preguntar a laura** | true or false |
