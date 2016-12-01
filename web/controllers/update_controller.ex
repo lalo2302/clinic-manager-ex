@@ -1,7 +1,7 @@
 defmodule ClinicApp.UpdateController do
   use ClinicApp.Web, :controller
 
-  def rate_appointment(conn, %{"id" => appointment_id, "satisfaction" => rate}) do
+  def rate_appointment(conn, %{"id" => appointment_id, "rate" => rate}) do
     appointment = ClinicApp.Repo.get(ClinicApp.Appointment, appointment_id)
     appointment = %{appointment | satisfaction: String.to_integer(rate)} 
     case ClinicApp.Repo.update(appointment) do
