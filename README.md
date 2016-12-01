@@ -43,7 +43,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | POST | /patient/user | id_patient, username, password | {"result":"true"} |
 | POST | /doctor/user | id_doctor, username, password | true or false |
 | POST | /administrative/user | id_admin, username, password | true or false |
-| POST | /employee | **Preguntar a laura** | true or false |
+| POST | /employee | {"employee":{"name":"lalo","last_name":"lalo","date_birth":"2010-02-02","gender":"M","curp":"AAAA000000HAAAAA00","rfc":"AAAA000000000","address":"address","email":"lalo@lalo.com","phone":"4777867","profession":"doctor","job":"doctor","specialty_id":1}} | {"id":8} |
 | POST | /antecedent | id_history, type, name, description | true or false |
 | POST | /ailment | id_history,main_symtopm, colateral_symptom, symptom_localization | true or false |
 | POST | /exploration | id_history, temperature, blood_pressure, heart_rate, breathing_frec, observations | true or false |
