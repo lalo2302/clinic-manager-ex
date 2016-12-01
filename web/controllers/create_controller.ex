@@ -9,8 +9,41 @@ defmodule ClinicApp.CreateController do
     text conn, "patient"
   end
 
-  def user(conn, %{"id_patient" => patient_id, "username" => username, "password" => password, "level" => level}) do
-    text conn, "user"
+  # def user(conn, %{"id_patient" => patient_id, "username" => username, "password" => password, "level" => level}) do
+  def patient_user(conn, %{"username" => username, "password" => password, "id_patient" => patient_id}) do
+    changeset = ClinicApp.User.patient_changeset(%ClinicApp.User{}, %{username: username, password: password})
+    
+    case ClinicApp.Repo.insert(changeset) do
+      {:ok, user} ->
+        patient = ClinicApp.Repo.get(ClinicApp.Patient, patient_id)
+        patient = %{ patient | user_id: user.id }
+        case ClinicApp.Repo.update(patient) do
+          {:ok, update} -> IO.puts "RELACION PACIENTE USUARIO HECHA"
+          {:error, error} -> render(ClinicApp.ChangesetView, "error.json")
+        end
+        render(conn, "user.json", %{user: user})
+      {:error, changeset} ->
+        conn
+        |> render(ClinicApp.ChangesetView, "error.json")
+    end
+  end
+
+  def doctor_user(conn, %{"username" => username, "password" => password, "id_doctor" => doctor_id}) do
+    changeset = ClinicApp.User.doctor_changeset(%ClinicApp.User{}, %{username: username, password: password})
+
+    case ClinicApp.Repo.insert(changeset) do
+      {:ok, user} ->
+        doctor = ClinicApp.Repo.get(ClinicApp.Patient, doctor_id)
+        doctor = %{ doctor | user_id: user.id }
+        case ClinicApp.Repo.update(doctor) do
+          {:ok, update} -> IO.puts "RELACION DOCTOR USUARIO HECHA"
+          {:error, error} -> render(ClinicApp.ChangesetView, "error.json")
+        end
+        render(conn, "employee_login.json", %{employee: doctor, level: user.level})
+      {:error, changeset} ->
+        conn
+        |> render(ClinicApp.ChangesetView, "error.json")
+    end
   end
 
   def employee(conn, _params) do

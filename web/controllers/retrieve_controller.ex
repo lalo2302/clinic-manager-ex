@@ -18,7 +18,7 @@ defmodule ClinicApp.RetrieveController do
             where: a.employee_id == ^doctor_id,
             select: a.date
     dates = ClinicApp.Repo.all(query)
-    render(conn, "existent_appointments.json", dates: dates)
+    render("existent_appointments.json", dates: dates)
   end
 
   def show_appointment_day(conn, %{"date" => date}) do

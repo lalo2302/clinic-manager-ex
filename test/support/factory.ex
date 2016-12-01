@@ -1,6 +1,5 @@
 defmodule ClinicApp.Factory do
   use ExMachina
-  use ClinicApp.JsonEncodeStrategy
 
   def ailment_factory do
     %ClinicApp.Ailment{
@@ -74,13 +73,13 @@ defmodule ClinicApp.Factory do
     %ClinicApp.Patient{
       name: Faker.Name.first_name,
       last_name: Faker.Name.last_name,
-      date_of_birth: DateTime.utc_now,
+      date_of_birth: Ecto.Date.local,
       address: Faker.Address.street_address,
       phone: Faker.Phone.EnUs.phone, 
       gender: "M",
+      curp: ClinicApp.CurpType.demo,
+      rfc: ClinicApp.RfcType.demo,
       email: Faker.Internet.free_email,
-      # Relation with ClinicalHistory
-      # Relation with User
     }
   end
 
@@ -148,7 +147,7 @@ defmodule ClinicApp.Factory do
   def user_factory do
     %ClinicApp.User{
       username: Faker.Internet.user_name,
-      password: Faker.Lorem.characters(9)
+      password: Faker.Internet.user_name
     }
   end 
 
