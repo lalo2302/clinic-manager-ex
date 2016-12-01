@@ -121,7 +121,12 @@ defmodule ClinicApp.CreateController do
   end
 
   #TODO: Hacer que te retorne el id del estudio
-  def study(conn, %{"date" => date, "type" => type, "diagnosis" => diagnosis, "result" => result, "indications" => indications, "id_doctor" => doctor_id, "id_history" => history_id}) do
-    text conn, "study"
+  def study(conn, %{"study" => params}) do
+    changeset = ClinicApp.Study.changeset(%ClinicApp.Study{}, params)
+
+    case ClinicApp.Repo.insert(changeset) do
+      {:ok, study} -> render(conn, "study.json", %{study: study})
+      {:error, changeset} -> render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
+    end
   end
 end
