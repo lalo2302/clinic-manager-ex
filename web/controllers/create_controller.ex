@@ -88,6 +88,16 @@ defmodule ClinicApp.CreateController do
         render(conn, "employee.json", %{id: employee.id})
       {:error, error} -> render(conn, ClinicApp.ChangesetView, "error.json", %{changeset: changeset})
     end
+
+    service_url = "URL OF SERVICE"
+    names = String.split(params[:last_name])
+    parameters = %{"Nombre" => params[:name], "Status" => "1", "apMaterno" => tl(names), "apPaterno" => hd(names), "Genero" => params[:gender]}
+    HTTPoison.start
+    case HTTPoison.post service_url, Poison.encode!(parameters), [{"Content-Type", "application/json"}] do
+      {:ok, message} -> IO.puts "Employee inserted correctly"
+      {:error, message} -> IO.puts "Couldn't reach the service"   
+    end
+
   end
 
   def antecedent(conn, %{"antecedent" => params}) do
