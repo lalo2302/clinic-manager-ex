@@ -14,7 +14,11 @@ defmodule ClinicApp.StockController do
     end
   end
 
-  def place_order(conn, _params) do
-    text conn, "place order"
+  def place_order(conn, %{"drugs" => params}) do
+    wsdl_url = "IP OF SOAP SERVICE"
+    action = "ACTION"
+    parameters = [params[:name],params[:quantity]]
+
+    Detergentex.call(wsdl_url, action, parameters)
   end
 end
