@@ -39,7 +39,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 | GET  | /study/:id  | <--  |  {"treatment":"study","result":"study","indications":"study","id":1,"diagosis":"study","date":"2016-01-11"} |
 | GET  | /clinic | NULL |{"clinics":[{"phone":"clinicphone","opening_time":"open","open_days":"open","name":"clinic","manager":"clmanager","id":1,"email":"lalo@email.com","closing_time":"close","address":"clinicaddresss"}]} |
 | GET  | /study/list | id_patient | {"studies":[{"id":1, "date":"YYYY-MM-DD", "type":"type"}]} |
-| POST | /drug/order | **Preguntar a equipo de ale** | **Preguntar a equipo de ale** |
+| POST | /drug/order | {"drug":{"name":"ejemplo", "quantity":10}} | **Preguntar a equipo de ale** |
 | POST | /appointment | {"appointment":{"date":"2010-02-02 10:00:00","type":"rutina","patient_id":2,"employee_id":5}}| {"id":9}|
 | POST | /patient | {"patient":{"name":"lalo","last_name":"lalo","date_of_birth":"2010-02-02","address":"calle","phone":"456456","gender":"M","curp":"AAAA000000HAAAAA00","rfc":"AAAA000000000","email":"lalo@lalo.com"}} | {"id":1013,"clinical_history_id":4}|
 | POST | /patient/user | id_patient, username, password | {"result":"true"} |
