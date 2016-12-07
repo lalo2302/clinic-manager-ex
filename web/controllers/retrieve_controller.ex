@@ -18,7 +18,7 @@ defmodule ClinicApp.RetrieveController do
             where: a.employee_id == ^doctor_id,
             select: a.date
     dates = ClinicApp.Repo.all(query)
-    render("existent_appointments.json", dates: dates)
+    render(conn, "existent_appointments.json", dates: dates)
   end
 
   def show_appointment_day(conn, %{"date" => date, "id_doctor" => doctor_id}) do
@@ -103,7 +103,6 @@ defmodule ClinicApp.RetrieveController do
     render(conn, "doctors.json", doctors: doctors)
   end
 
-  #TODO: Siempre que rollo con esto?
   def show_clinical_history(conn, %{"id_patient" => patient_id}) do
     patient = ClinicApp.Repo.get(ClinicApp.Patient, patient_id) |> ClinicApp.Repo.preload(:clinical_history)
     clinical_history = patient.clinical_history |> ClinicApp.Repo.preload(:ailments) |> ClinicApp.Repo.preload(:antecedents)

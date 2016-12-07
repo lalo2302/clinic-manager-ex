@@ -16,7 +16,7 @@ defmodule ClinicApp.Study do
   end
 
   def changeset(model, params) do
-    required_params = ~w(date diagnosis result indications treatment employee_id clinical_history_id)
+    required_params = ~w(date diagnosis result indications treatment employee_id clinical_history_id type)
     changeset = cast(model, params, required_params, [])
     changeset
   end
